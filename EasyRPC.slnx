@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="EasyRPC/EasyRPC.csproj" />
+  <Project Path="SampleApp/SampleApp.csproj" />
+</Solution>
