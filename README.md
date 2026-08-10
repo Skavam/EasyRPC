@@ -40,7 +40,7 @@ Example 2 with 2 buttons
 using EasyRPC;
 using System.Collections.Generic; 
 
-await EasyRpc.InitializeAsync("1526092459107549285");
+await EasyRpc.InitializeAsync("YOUR_DISCORD_APPLICATION_ID");
 
 var buttons = new List<Button>
 {
