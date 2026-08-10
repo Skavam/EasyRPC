@@ -15,7 +15,14 @@ EasyRPC is a dead-simple, zero-dependency Discord Rich Presence library for .NET
 
 ### 1. Install / Reference
 
-Clone the repository or download the source. Reference the `EasyRPC` project in your solution.
+Either Clone the repository or download the source. Reference the `EasyRPC` project in your solution.
+
+Or use .NET CLI 
+```
+dotnet add package Skavam.EasyRPC --version 1.0.2
+```
+
+[![NuGet Version](https://img.shields.io/nuget/v/Skavam.EasyRPC)](https://www.nuget.org/packages/Skavam.EasyRPC)
 
 ### 2. In your code 
 
