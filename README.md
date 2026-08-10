@@ -55,6 +55,7 @@ await EasyRpc.SetPresenceAsync(
     buttons: buttons
 );
 
+// Keep the app running while you want the presence active.
 Console.ReadKey();
 
 await EasyRpc.ShutdownAsync();
