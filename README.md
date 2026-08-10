@@ -44,8 +44,8 @@ await EasyRpc.InitializeAsync("YOUR_DISCORD_APPLICATION_ID");
 
 var buttons = new List<Button>
 {
-    new Button { Label = "Test1", Url = "https://www.google.com/" },
-    new Button { Label = "Test2", Url = "https://www.google.com/" }
+    new Button { Label = "YOUR_BUTTON_NAME", Url = "YOUR_URL" },
+    new Button { Label = "YOUR_BUTTON_NAME", Url = "YOUR_URL" }
 };
 
 await EasyRpc.SetPresenceAsync(
