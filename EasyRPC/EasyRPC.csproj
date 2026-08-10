@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <PackageId>Skavam.EasyRPC</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Skavam</Authors>
     <Company>Skavam</Company>
     <Description>EasyRPC is a dead-simple, zero-dependency Discord Rich Presence library for .NET 8+</Description>

@@ -11,7 +11,7 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("Skavam")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute(("EasyRPC is a dead-simple, zero-dependency Discord Rich Presence library for .NET " +
     "8+"))]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.2.0")]

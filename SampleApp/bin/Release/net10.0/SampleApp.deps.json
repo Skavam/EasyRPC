@@ -1,0 +1,53 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "SampleApp/1.0.0": {
+        "dependencies": {
+          "Skavam.EasyRPC": "1.0.2",
+          "EasyRPC": "1.0.2.0"
+        },
+        "runtime": {
+          "SampleApp.dll": {}
+        }
+      },
+      "Skavam.EasyRPC/1.0.2": {
+        "runtime": {
+          "EasyRPC.dll": {
+            "assemblyVersion": "1.0.2.0",
+            "fileVersion": "1.0.2.0"
+          }
+        }
+      },
+      "EasyRPC/1.0.2.0": {
+        "runtime": {
+          "EasyRPC.dll": {
+            "assemblyVersion": "1.0.2.0",
+            "fileVersion": "1.0.2.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SampleApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Skavam.EasyRPC/1.0.2": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EasyRPC/1.0.2.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
