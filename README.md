@@ -38,7 +38,7 @@ await EasyRpc.ShutdownAsync();
 Example 2 with buttons
 ```csharp
 using EasyRPC;
-using System.Collections.Generic; 
+using System.Collections.Generic; // REQUIRED because we're using "List<Button>". 
 
 await EasyRpc.InitializeAsync("YOUR_DISCORD_APPLICATION_ID");
 
