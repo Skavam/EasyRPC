@@ -61,3 +61,24 @@ Console.ReadKey();
 
 await EasyRpc.ShutdownAsync();
 ```
+
+Example 3 with a party
+```csharp
+using EasyRPC;
+
+await EasyRpc.InitializeAsync("YOUR_DISCORD_APPLICATION_ID");
+
+await EasyRpc.SetPresenceAsync(
+    details: "YOUR_APP_DETAILS",
+    state: "YOUR_APP_STATE",
+    startTimestamp: DateTime.UtcNow,
+    partyId: "YOUR_PARTY_ID",
+    partySize: 5, // Amount of people currently in the party
+    partyMax: 10 // Maximum of people allowed in the party
+);
+
+// Keep the app running while you want the presence active.
+Console.ReadKey();
+
+await EasyRpc.ShutdownAsync();
+```
