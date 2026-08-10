@@ -9,10 +9,12 @@ public static class EasyRpcEvents
     public static event EventHandler<string>? OnReady;
     public static event EventHandler<Exception>? OnError;
     public static event EventHandler<Presence>? OnPresenceUpdate;
+    public static event EventHandler<string>? OnLog; // Optional: for general logging
 
     internal static void RaiseOnReady(string userId) => OnReady?.Invoke(null, userId);
     internal static void RaiseOnError(Exception ex) => OnError?.Invoke(null, ex);
     internal static void RaiseOnPresenceUpdate(Presence presence) => OnPresenceUpdate?.Invoke(null, presence);
+    internal static void RaiseOnLog(string message) => OnLog?.Invoke(null, message);
 }
 
 public static class EasyRpc
@@ -32,7 +34,7 @@ public static class EasyRpc
     private static Presence? _currentPresence;
     private static DateTime _lastPong = DateTime.UtcNow;
     private static bool _reconnectPending;
-    private static readonly SemaphoreSlim _readLock = new(1, 1); // prevent concurrent reads
+    private static readonly SemaphoreSlim _readLock = new(1, 1);
 
     public static async Task InitializeAsync(string clientId)
     {
@@ -48,7 +50,6 @@ public static class EasyRpc
             _isDisposing = false;
             await ConnectAsync();
 
-            // Ping timer: send a ping every 15 seconds
             _pingTimer = new System.Timers.Timer(15000);
             _pingTimer.Elapsed += async (_, _) => await PingAsync();
             _pingTimer.AutoReset = true;
@@ -100,7 +101,7 @@ public static class EasyRpc
                 _lastPong = DateTime.UtcNow;
                 _reconnectPending = false;
                 EasyRpcEvents.RaiseOnReady(userId);
-                Console.WriteLine($"EasyRPC connected via {pipeName} as user {userId}");
+                EasyRpcEvents.RaiseOnLog($"EasyRPC connected via {pipeName} as user {userId}");
 
                 if (_currentPresence != null)
                     await SetPresenceAsync(_currentPresence);
@@ -108,11 +109,14 @@ public static class EasyRpc
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"!!! Pipe {pipeName} failed: {ex.Message}");
+                EasyRpcEvents.RaiseOnLog($"!!! Pipe {pipeName} failed: {ex.Message}");
+                EasyRpcEvents.RaiseOnError(ex);
             }
         }
 
-        throw new Exception("Could not connect to Discord. Is Discord running?");
+        var finalEx = new Exception("!!! Could not connect to Discord. Is Discord running?");
+        EasyRpcEvents.RaiseOnError(finalEx);
+        throw finalEx;
     }
 
     public static async Task SetPresenceAsync(Presence presence)
@@ -182,7 +186,6 @@ public static class EasyRpc
         try
         {
             await SendFrameAsync(OpcodeFrame, json);
-            // Read the response (this also helps keep the pipe alive)
             var response = await ReadFrameAsync();
 
             if (response.Opcode == OpcodeFrame)
@@ -196,7 +199,7 @@ public static class EasyRpc
                             data.TryGetProperty("message", out var msg))
                         {
                             var errorMsg = msg.GetString() ?? "Unknown error";
-                            Console.WriteLine($"!!! Discord error: {errorMsg}");
+                            EasyRpcEvents.RaiseOnLog($"!!! Discord error: {errorMsg}");
                             EasyRpcEvents.RaiseOnError(new Exception(errorMsg));
                             return;
                         }
@@ -206,22 +209,28 @@ public static class EasyRpc
 
                 _currentPresence = presence;
                 EasyRpcEvents.RaiseOnPresenceUpdate(presence);
-                Console.WriteLine("Presence updated successfully.");
+                EasyRpcEvents.RaiseOnLog("Presence updated successfully.");
             }
             else if (response.Opcode == OpcodeClose)
             {
-                Console.WriteLine("!!! Discord closed the connection.");
+                EasyRpcEvents.RaiseOnLog("Discord closed the connection.");
                 await ReconnectAsync();
             }
             else
             {
-                Console.WriteLine($"!!! Unexpected opcode {response.Opcode}: {response.Payload}");
+                EasyRpcEvents.RaiseOnLog($"Unexpected opcode {response.Opcode}: {response.Payload}");
             }
         }
         catch (IOException ex)
         {
-            Console.WriteLine($"!!! I/O error while sending presence: {ex.Message}");
+            EasyRpcEvents.RaiseOnLog($"!!! I/O error while sending presence: {ex.Message}");
+            EasyRpcEvents.RaiseOnError(ex);
             await ReconnectAsync();
+        }
+        catch (Exception ex)
+        {
+            EasyRpcEvents.RaiseOnError(ex);
+            throw;
         }
     }
 
@@ -299,7 +308,7 @@ public static class EasyRpc
         {
             try
             {
-                Console.WriteLine($"!!! Attempting reconnect in {delay}ms...");
+                EasyRpcEvents.RaiseOnLog($"Attempting reconnect in {delay}ms...");
                 await Task.Delay(delay);
                 if (_isDisposing) break;
 
@@ -321,7 +330,8 @@ public static class EasyRpc
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"!!! Reconnect failed: {ex.Message}");
+                EasyRpcEvents.RaiseOnLog($"!!! Reconnect failed: {ex.Message}");
+                EasyRpcEvents.RaiseOnError(ex);
             }
 
             if (delay < 30000)
@@ -339,36 +349,35 @@ public static class EasyRpc
                 return;
             }
 
-            // Check if we haven't received a pong in a while (30 seconds)
             if ((DateTime.UtcNow - _lastPong).TotalSeconds > 30)
             {
-                Console.WriteLine("!!! Ping timeout – reconnecting...");
+                EasyRpcEvents.RaiseOnLog("Ping timeout – reconnecting...");
                 await ReconnectAsync();
                 return;
             }
 
-            // Send ping and wait for pong
             await SendFrameAsync(OpcodePing, "{}");
             var response = await ReadFrameAsync();
             if (response.Opcode == OpcodePong)
             {
                 _lastPong = DateTime.UtcNow;
-                // Console.WriteLine("Pong received");
             }
             else if (response.Opcode == OpcodeClose)
             {
-                Console.WriteLine("!!! Discord closed connection during ping.");
+                EasyRpcEvents.RaiseOnLog("Discord closed connection during ping.");
                 await ReconnectAsync();
             }
         }
-        catch (IOException)
+        catch (IOException ex)
         {
-            Console.WriteLine("!!! Pipe broken during ping – reconnecting...");
+            EasyRpcEvents.RaiseOnLog($"!!! Pipe broken during ping – reconnecting: {ex.Message}");
+            EasyRpcEvents.RaiseOnError(ex);
             await ReconnectAsync();
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"!!! Ping failed: {ex.Message}");
+            EasyRpcEvents.RaiseOnLog($"!!! Ping failed: {ex.Message}");
+            EasyRpcEvents.RaiseOnError(ex);
             await ReconnectAsync();
         }
     }
@@ -393,7 +402,6 @@ public static class EasyRpc
         if (_pipe == null || !_pipe.IsConnected)
             throw new InvalidOperationException("!!! Pipe not connected.");
 
-        // Prevent concurrent reads from different threads
         await _readLock.WaitAsync();
         try
         {
