@@ -94,6 +94,7 @@ await EasyRpc.InitializeAsync("YOUR_DISCORD_APPLICATION_ID");
 await EasyRpc.SetPresenceAsync(
     details: "YOUR_APP_DETAILS",
     state: "YOUR_APP_STATE",
+    startTimestamp: DateTime.UtcNow,
     largeImageKey: "YOUR_ASSET_NAME",     
     largeImageText: "YOUR_HOVER_TEXT",        
     smallImageKey: "YOUR_ASSET_NAME",     
