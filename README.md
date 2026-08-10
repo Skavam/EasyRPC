@@ -15,8 +15,9 @@ EasyRPC is a dead-simple, zero-dependency Discord Rich Presence library for .NET
 
 Clone the repository or download the source. Reference the `EasyRPC` project in your solution.
 
-### 2. In your code
+### 2. In your code 
 
+Example 1 with no buttons
 ```csharp
 using EasyRPC;
 
@@ -29,6 +30,31 @@ await EasyRpc.SetPresenceAsync(
 );
 
 // Keep the app running while you want the presence active.
+Console.ReadKey();
+
+await EasyRpc.ShutdownAsync();
+```
+
+Example 2 with 2 buttons
+```csharp
+using EasyRPC;
+using System.Collections.Generic; 
+
+await EasyRpc.InitializeAsync("1526092459107549285");
+
+var buttons = new List<Button>
+{
+    new Button { Label = "Test1", Url = "https://www.google.com/" },
+    new Button { Label = "Test2", Url = "https://www.google.com/" }
+};
+
+await EasyRpc.SetPresenceAsync(
+    details: "Playing my game",
+    state: "In the menu",
+    startTimestamp: DateTime.UtcNow,
+    buttons: buttons
+);
+
 Console.ReadKey();
 
 await EasyRpc.ShutdownAsync();
