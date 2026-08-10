@@ -106,3 +106,26 @@ Console.ReadKey();
 
 await EasyRpc.ShutdownAsync();
 ```
+
+Example 5 usage of EasyRPC's events
+```csharp
+using EasyRPC;
+
+EasyRpcEvents.OnReady += (sender, userId) => Console.WriteLine($"EasyRPC is ready! User: {userId}"); // Write in the console when the library is ready
+EasyRpcEvents.OnError += (sender, error) => Console.WriteLine($"!!! Error: {error.Message}"); // Write in the console an error
+EasyRpcEvents.OnPresenceUpdate += (sender, presence) => Console.WriteLine($"Presence: {presence.Details}"); // Write in the console when a change got applied to your RPC
+EasyRpcEvents.OnLog += (sender, message) => Console.WriteLine($"LOG: {message}"); // Write in console logs of what the library is doing
+
+await EasyRpc.InitializeAsync("YOUR_DISCORD_APPLICATION_ID");
+
+await EasyRpc.SetPresenceAsync(
+    details: "YOUR_APP_DETAILS",
+    state: "YOUR_APP_STATE",
+    startTimestamp: DateTime.UtcNow
+);
+
+// Keep the app running while you want the presence active.
+Console.ReadKey();
+
+await EasyRpc.ShutdownAsync();
+```
