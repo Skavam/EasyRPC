@@ -376,7 +376,7 @@ public static class EasyRpc
     private static async Task SendFrameAsync(int opcode, string payload)
     {
         if (_pipe == null || !_pipe.IsConnected)
-            throw new InvalidOperationException("Pipe not connected.");
+            throw new InvalidOperationException("!!! Pipe not connected.");
 
         byte[] data = Encoding.UTF8.GetBytes(payload);
         using var ms = new MemoryStream();
@@ -391,7 +391,7 @@ public static class EasyRpc
     private static async Task<(int Opcode, string Payload)> ReadFrameAsync()
     {
         if (_pipe == null || !_pipe.IsConnected)
-            throw new InvalidOperationException("Pipe not connected.");
+            throw new InvalidOperationException("!!! Pipe not connected.");
 
         // Prevent concurrent reads from different threads
         await _readLock.WaitAsync();
