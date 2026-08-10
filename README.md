@@ -35,7 +35,7 @@ Console.ReadKey();
 await EasyRpc.ShutdownAsync();
 ```
 
-Example 2 with 2 buttons
+Example 2 with buttons
 ```csharp
 using EasyRPC;
 using System.Collections.Generic; 
