@@ -1,0 +1,12 @@
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\bin\Release\net8.0\EasyRPC.deps.json
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\bin\Release\net8.0\EasyRPC.dll
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\bin\Release\net8.0\EasyRPC.pdb
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\obj\Release\net8.0\EasyRPC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\obj\Release\net8.0\EasyRPC.AssemblyInfoInputs.cache
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\obj\Release\net8.0\EasyRPC.AssemblyInfo.cs
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\obj\Release\net8.0\EasyRPC.csproj.CoreCompileInputs.cache
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\obj\Release\net8.0\EasyRPC.sourcelink.json
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\obj\Release\net8.0\EasyRPC.dll
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\obj\Release\net8.0\refint\EasyRPC.dll
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\obj\Release\net8.0\EasyRPC.pdb
+C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\obj\Release\net8.0\ref\EasyRPC.dll

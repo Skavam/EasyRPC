@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Skavam.EasyRPC</id>
+    <version>1.0.1</version>
+    <authors>Skavam</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/Skavam/EasyRPC</projectUrl>
+    <description>EasyRPC is a dead-simple, zero-dependency Discord Rich Presence library for .NET 8+</description>
+    <tags>discord rpc rich-presence discord-rpc easy</tags>
+    <repository type="git" url="https://github.com/Skavam/EasyRPC.git" commit="ef5dff470e681a0a6ca65f907d9af6e131131274" />
+    <dependencies>
+      <group targetFramework="net8.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Bastien Cossette\Documents\EasyRPC\EasyRPC\bin\Release\net8.0\EasyRPC.dll" target="lib\net8.0\EasyRPC.dll" />
+    <file src="C:\Users\Bastien Cossette\Documents\EasyRPC\README.md" target="\README.md" />
+  </files>
+</package>
