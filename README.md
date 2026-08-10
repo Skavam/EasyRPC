@@ -84,3 +84,24 @@ Console.ReadKey();
 
 await EasyRpc.ShutdownAsync();
 ```
+
+Example 4 with the addition of a large and small image
+```csharp
+using EasyRPC;
+
+await EasyRpc.InitializeAsync("YOUR_DISCORD_APPLICATION_ID");
+
+await EasyRpc.SetPresenceAsync(
+    details: "YOUR_APP_DETAILS",
+    state: "YOUR_APP_STATE",
+    largeImageKey: "YOUR_ASSET_NAME",     
+    largeImageText: "YOUR_HOVER_TEXT",        
+    smallImageKey: "YOUR_ASSET_NAME",     
+    smallImageText: "YOUR_HOVER_TEXT"        
+);
+
+// Keep the app running while you want the presence active.
+Console.ReadKey();
+
+await EasyRpc.ShutdownAsync();
+```
