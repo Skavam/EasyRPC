@@ -1,9 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <PackageId>Skavam.EasyRPC</PackageId>
+    <Version>1.0.1</Version>
+    <Authors>Skavam</Authors>
+    <Company>Skavam</Company>
+    <Description>EasyRPC is a dead-simple, zero-dependency Discord Rich Presence library for .NET 8+</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression> 
+    <PackageProjectUrl>https://github.com/Skavam/EasyRPC</PackageProjectUrl> 
+    <RepositoryUrl>https://github.com/Skavam/EasyRPC.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>discord;rpc;rich-presence;discord-rpc;easy</PackageTags>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 </Project>
