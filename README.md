@@ -73,8 +73,8 @@ await EasyRpc.SetPresenceAsync(
     state: "YOUR_APP_STATE",
     startTimestamp: DateTime.UtcNow,
     partyId: "YOUR_PARTY_ID",
-    partySize: 5, // Amount of people currently in the party
-    partyMax: 10 // Maximum of people allowed in the party
+    partySize: 5, // Number of people currently in the party
+    partyMax: 10 // Maximum number of people allowed in the party
 );
 
 // Keep the app running while you want the presence active.
