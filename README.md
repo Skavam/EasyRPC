@@ -24,8 +24,8 @@ using EasyRPC;
 await EasyRpc.InitializeAsync("YOUR_DISCORD_APPLICATION_ID");
 
 await EasyRpc.SetPresenceAsync(
-    details: "Playing my game",
-    state: "In the menu",
+    details: "YOUR_APP_DETAILS",
+    state: "YOUR_APP_STATE",
     startTimestamp: DateTime.UtcNow
 );
 
@@ -49,8 +49,8 @@ var buttons = new List<Button>
 };
 
 await EasyRpc.SetPresenceAsync(
-    details: "Playing my game",
-    state: "In the menu",
+    details: "YOUR_APP_DETAILS",
+    state: "YOUR_APP_STATE",
     startTimestamp: DateTime.UtcNow,
     buttons: buttons
 );
