@@ -44,6 +44,7 @@ await EasyRpc.InitializeAsync("YOUR_DISCORD_APPLICATION_ID");
 
 var buttons = new List<Button>
 {
+    // NOTE: Each RPCs can only feature two buttons, each with a label and a valid URL
     new Button { Label = "YOUR_BUTTON_NAME", Url = "YOUR_URL" },
     new Button { Label = "YOUR_BUTTON_NAME", Url = "YOUR_URL" }
 };
