@@ -25,8 +25,8 @@ jobs:
       - name: Build
         run: dotnet build -c Release --no-restore
       
-      - name: Pack
-        run: dotnet pack -c Release -o ./nupkg --no-restore
+      - name: Pack EasyRPC
+        run: dotnet pack EasyRPC/EasyRPC.csproj -c Release -o ./nupkg --no-restore
       
       - name: Push to NuGet
         run: dotnet nuget push ./nupkg/Skavam.EasyRPC.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
