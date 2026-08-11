@@ -6,7 +6,6 @@ EasyRPC is a dead-simple, zero-dependency Discord Rich Presence library for .NET
 ## Features
 
 - **One‑line setup** – just call `InitializeAsync()` with your Discord Application ID.
-- **Self‑contained** – no external NuGet packages; pure .NET 8.
 - **Auto‑reconnect** – restores the presence when Discord restarts.
 - **Fully async** – non‑blocking operations.
 - **Rich Presence support** – buttons, timestamps, party info, images.
