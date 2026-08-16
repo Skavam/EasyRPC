@@ -1,6 +1,9 @@
 # EasyRPC
 Are you tired of these overcomplexed libraries for Discord RPC when all you want is a simple and straightforward syntax? Well, EasyRPC might be for you.
 
+<img src="images/first_example.png" alt="First example of a real usage of EasyRPC" width="500" />
+<img src="images/second_example.png" alt="Second example of a real usage of EasyRPC" width="500" />
+<img src="images/third_example.png" alt="Third example of a real usage of EasyRPC" width="500" />
 EasyRPC is a dead-simple, zero-dependency Discord Rich Presence library for .NET 8+
 
 ## Features
